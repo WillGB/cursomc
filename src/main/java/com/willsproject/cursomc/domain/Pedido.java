@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido implements Serializable { //interface Serializable > os objetos são convertidos para uma sequencia de bytes para trafegar redes e salvos em arquivos
@@ -30,11 +29,9 @@ public class Pedido implements Serializable { //interface Serializable > os obje
 	@JsonFormat(pattern ="dd/MM/yyyy HH:mm")
 	private Date instante;
 	
-	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") //o mesmo ID do pedido ~e o mesmo ID do pagamento
 	private Pagamento pagamento;
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
